@@ -1,0 +1,38 @@
+{
+"coleccionables": [
+{ "nombre": "Apple", "rareza": "Comun", "valor": 10,
+"iconoId": "Apple" },
+{ "nombre": "Bananas", "rareza": "Comun", "valor": 12,
+"iconoId": "Bananas" },
+{ "nombre": "Cherries", "rareza": "Raro", "valor": 20,
+"iconoId": "Cherries" },
+{ "nombre": "Kiwi", "rareza": "Raro", "valor": 25, "iconoId":
+"Kiwi" },
+{ "nombre": "Melon", "rareza": "Epico", "valor": 40,
+"iconoId": "Melon" },
+{ "nombre": "Orange", "rareza": "Comun", "valor": 15,
+"iconoId": "Orange" },
+{ "nombre": "Pineapple", "rareza": "Epico", "valor": 50,
+"iconoId": "Pineapple" },
+{ "nombre": "Strawberry", "rareza": "Raro", "valor": 30,
+"iconoId": "Strawberry" }
+],
+"misiones": [
+{
+"id": 1,
+"titulo": "Canasta básica",
+"objetivos": [
+{ "itemName": "Apple", "cantidad": 2 },
+{ "itemName": "Bananas", "cantidad": 1 }
+]
+},
+{
+"id": 2,
+"titulo": "Frutas especiales",
+"objetivos": [
+{ "itemName": "Orange", "cantidad": 2 },
+{ "itemName": "Pineapple", "cantidad": 1 }
+]
+}
+]
+}
