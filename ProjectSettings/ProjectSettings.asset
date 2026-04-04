@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: f1f23e1fe25d79f408ebe41e19e255fa
+  productGUID: 0cb6187bccd730447a7faa4ce566d5b5
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: "Simulador de Recolecci\xF3n de Frutas"
+  productName: Frutas 2D
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -604,14 +604,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: "Simulador de Recolecci\xF3n de Frutas"
+  metroPackageName: Frutas 2D
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: "Simulador de Recolecci\xF3n de Frutas"
+  metroApplicationDescription: Frutas 2D
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -682,10 +682,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 693f0bf0-8e82-46f0-8eb7-8a71a757ed75
+  cloudProjectId: eee77ee6-82a9-472b-b5e7-0763aa950b8f
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: "Simulador de Recolecci\xF3n de Frutas"
+  projectName: Frutas 2D
   organizationId: andres037
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
