@@ -1,29 +1,41 @@
+using NUnit.Framework.Interfaces;
+using UnityEditor;
 using UnityEngine;
 using static LeerJS;
 
 public class Spawner : MonoBehaviour
 {
 
-    public GameObject Fruta;
+    public GameObject FrutaPrefab;
+    public Transform[] spawnPoints;
+
+
 
     void Start()
     {
-        Crear();
+        Crear(4);
     }
 
-    public void Crear()
+    public void Crear(int cantidad =4)
     {
-        foreach (coleccionable dato in LeerJS.listaColeccionables) 
+        for (int i = 0; i < cantidad; i++)
         {
-            Vector3 posicion = new Vector3(Random.Range(-5, 5), Random.Range(-3, 3), 0);
-            GameObject nuevoObjeto = Instantiate(Fruta, posicion, Quaternion.identity);
-            InstanciaFruta datosDinamicos = ScriptableObject.CreateInstance<InstanciaFruta>();
-            datosDinamicos.Setup(dato);
+            // Seleccionar un coleccionable aleatorio de la lista
+            int indiceColeccionable = Random.Range(0, LeerJS.listaColeccionables.Count);
+            LeerJS.coleccionable coleccionableSeleccionado = LeerJS.listaColeccionables[indiceColeccionable];
 
+            // Seleccionar un punto de spawn aleatorio
+            int indiceAleatorio = Random.Range(0, spawnPoints.Length);
+            Transform punto = spawnPoints[indiceAleatorio];
 
-            if (nuevoObjeto.TryGetComponent(out ItemRecolectable scriptRecoleccion))
+            // Crear la fruta
+            GameObject nuevoItem = Instantiate(FrutaPrefab, punto.position, Quaternion.identity);
+
+            // Opcional: Asignar datos del coleccionable al objeto instanciado
+            InstanciaFruta itemData = nuevoItem.GetComponent<InstanciaFruta>();
+            if (itemData != null)
             {
-                scriptRecoleccion.Inicio(datosDinamicos);
+                itemData.Setup(coleccionableSeleccionado);
             }
         }
     }
