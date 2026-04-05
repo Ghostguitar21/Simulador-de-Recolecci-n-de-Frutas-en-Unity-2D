@@ -1,13 +1,16 @@
 using UnityEngine;
 using static LeerJS;
 
-public class InstanciaFruta : MonoBehaviour
+[CreateAssetMenu(fileName = "ItemData", menuName = "Scriptable Objects/ItemData")]
+
+
+public class InstanciaFruta : ScriptableObject
 {
     public string nombreF;
     public string rarezaF;
     public int valorF;
     public string iconoIdF;
-    public SpriteRenderer spriteRenderer;
+    public Sprite visualF;
 
     public void Setup(coleccionable data)
     {
@@ -20,8 +23,14 @@ public class InstanciaFruta : MonoBehaviour
         Sprite loadedSprite = Resources.Load<Sprite>(data.iconoId);
         if (loadedSprite != null)
         {
-            spriteRenderer.sprite = loadedSprite;
+            visualF = Resources.Load<Sprite>(data.iconoId);
         }
+
+
     }
+
+   
+
+    
 }
     

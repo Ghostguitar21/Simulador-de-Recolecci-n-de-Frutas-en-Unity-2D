@@ -1,47 +1,30 @@
-//using UnityEngine;
-//using System.Collections;
-//using System.Collections.Generic;
-//using static LeerJS;
+using UnityEngine;
+using static LeerJS;
 
-//public class Spawner : MonoBehaviour
-//{
+public class Spawner : MonoBehaviour
+{
 
-//    public GameObject coleccionable;
-//    public Transform[] spawnPoints;
+    public GameObject Fruta;
 
-//    void Start()
-//    {
-//        SpawnItems();
-//    }
+    void Start()
+    {
+        Crear();
+    }
 
-//    public void SpawnItems(int cantidad = 4)
-//    {
-
-//        for (int i = 0; i < cantidad; i++)
-//        {
-//            LeerJS dataManager = FindFirstObjectByType<LeerJS>();
-//            int indiceAleatorio = Random.Range(0, spawnPoints.Length);
-//            Transform punto = spawnPoints[indiceAleatorio];
-//            GameObject nuevoItem = Instantiate(coleccionable, punto.position, Quaternion.identity);
-
-//            if (dataManager != null && dataManager.listaColeccionables.Count > 0)
-//            {
-//                int puntoRandom = Random.Range(0, dataManager.listaColeccionables.Count);
-//                var infoJson = dataManager.listaColeccionables[puntoRandom];
+    public void Crear()
+    {
+        foreach (coleccionable dato in LeerJS.listaColeccionables) 
+        {
+            Vector3 posicion = new Vector3(Random.Range(-5, 5), Random.Range(-3, 3), 0);
+            GameObject nuevoObjeto = Instantiate(Fruta, posicion, Quaternion.identity);
+            InstanciaFruta datosDinamicos = ScriptableObject.CreateInstance<InstanciaFruta>();
+            datosDinamicos.Setup(dato);
 
 
-//                nuevoItem.GetComponent<InstanciaFruta>().Setup(infoJson);
-
-
-//                InstanciaFruta scriptFruta = nuevoItem.GetComponent<InstanciaFruta>();
-//                if (scriptFruta != null)
-//                {
-//                    scriptFruta.Setup(infoJson);
-//                }
-
-//            }
-
-
-//        }
-//    }
-//}
+            if (nuevoObjeto.TryGetComponent(out ItemRecolectable scriptRecoleccion))
+            {
+                scriptRecoleccion.Inicio(datosDinamicos);
+            }
+        }
+    }
+}

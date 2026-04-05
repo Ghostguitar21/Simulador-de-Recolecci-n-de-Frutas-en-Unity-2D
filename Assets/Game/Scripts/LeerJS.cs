@@ -42,7 +42,7 @@ public class LeerJS : MonoBehaviour
 
     public DataMaestra DatosCargados;
 
-    public List<coleccionable> listaColeccionables = new List<coleccionable>();
+    public static List<coleccionable> listaColeccionables = new List<coleccionable>();
     public List<mision> listaMisiones = new List<mision>();
 
 

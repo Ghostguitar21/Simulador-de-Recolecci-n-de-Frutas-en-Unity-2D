@@ -10,8 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject Tutorial;
     public static GameManager Instance;
     public LeerJS leerJS;
-    
-    
+    private int totalScore = 0;
     
 
     void Awake()
@@ -34,7 +33,7 @@ public class GameManager : MonoBehaviour
     {
         Tutorial.SetActive(false);
         
-        Debug.Log(leerJS.listaColeccionables.Count);
+        Debug.Log(listaColeccionables.Count);
     }
 
     void Update()
@@ -51,7 +50,18 @@ public class GameManager : MonoBehaviour
     {
         Tutorial.SetActive(false);
     }
+    public void TotalItem(InstanciaFruta frutaRecogida)
+    {
+        
+     if (frutaRecogida == null) return;
 
+        totalScore += frutaRecogida.valorF;
+        Debug.Log($"Recogiste: {frutaRecogida.nombreF}. Puntos: {frutaRecogida.valorF}");
+
+
+
+
+    }
    
 
 }
