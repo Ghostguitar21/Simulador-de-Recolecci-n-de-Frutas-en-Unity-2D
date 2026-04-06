@@ -16,27 +16,26 @@ public class Spawner : MonoBehaviour
         Crear(4);
     }
 
-    public void Crear(int cantidad =4)
+    public void Crear(int cantidad = 4)
     {
         for (int i = 0; i < cantidad; i++)
         {
-            // Seleccionar un coleccionable aleatorio de la lista
-            int indiceColeccionable = Random.Range(0, LeerJS.listaColeccionables.Count);
-            LeerJS.coleccionable coleccionableSeleccionado = LeerJS.listaColeccionables[indiceColeccionable];
+            // 1. Elegir coleccionable aleatorio del JSON
+            int indice = Random.Range(0, LeerJS.listaColeccionables.Count);
+            coleccionable datos = LeerJS.listaColeccionables[indice];
 
-            // Seleccionar un punto de spawn aleatorio
-            int indiceAleatorio = Random.Range(0, spawnPoints.Length);
-            Transform punto = spawnPoints[indiceAleatorio];
+            // 2. Crear InstanciaFruta en runtime (NO es GetComponent, es ScriptableObject)
+            InstanciaFruta instancia = ScriptableObject.CreateInstance<InstanciaFruta>();
+            instancia.Setup(datos);
 
-            // Crear la fruta
-            GameObject nuevoItem = Instantiate(FrutaPrefab, punto.position, Quaternion.identity);
+            // 3. Spawn en punto aleatorio
+            Transform punto = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            GameObject nuevo = Instantiate(FrutaPrefab, punto.position, Quaternion.identity);
 
-            // Opcional: Asignar datos del coleccionable al objeto instanciado
-            InstanciaFruta itemData = nuevoItem.GetComponent<InstanciaFruta>();
-            if (itemData != null)
-            {
-                itemData.Setup(coleccionableSeleccionado);
-            }
+            // 4. Pasar datos al componente del prefab genérico
+            ItemRecolectable item = nuevo.GetComponent<ItemRecolectable>();
+            if (item != null)
+                item.Inicio(instancia);
         }
     }
 }

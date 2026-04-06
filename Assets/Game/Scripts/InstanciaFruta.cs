@@ -26,6 +26,11 @@ public class InstanciaFruta : ScriptableObject
             visualF = Resources.Load<Sprite>(data.iconoId);
         }
 
+        Sprite[] frames = Resources.LoadAll<Sprite>(data.iconoId);
+        Debug.Log($"Cargando: {data.iconoId} → frames encontrados: {frames.Length}");
+        if (frames.Length > 0)
+            visualF = frames[0];
+
 
     }
 
