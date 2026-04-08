@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Controller_Nivel_1 : MonoBehaviour
 {
@@ -13,4 +14,6 @@ public class Controller_Nivel_1 : MonoBehaviour
     {
         
     }
+
+  
 }

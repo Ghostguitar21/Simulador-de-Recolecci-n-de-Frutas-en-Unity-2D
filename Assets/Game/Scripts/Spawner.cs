@@ -1,15 +1,16 @@
 using NUnit.Framework.Interfaces;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using static LeerJS;
 
 public class Spawner : MonoBehaviour
 {
-
     public GameObject FrutaPrefab;
     public Transform[] spawnPoints;
 
-
+    
+    List<Transform> puntosDisponibles;
 
     void Start()
     {
@@ -18,24 +19,34 @@ public class Spawner : MonoBehaviour
 
     public void Crear(int cantidad = 4)
     {
+        
+        puntosDisponibles = new List<Transform>(spawnPoints);
+
         for (int i = 0; i < cantidad; i++)
         {
-            // 1. Elegir coleccionable aleatorio del JSON
-            int indice = Random.Range(0, LeerJS.listaColeccionables.Count);
-            coleccionable datos = LeerJS.listaColeccionables[indice];
+            if (puntosDisponibles.Count == 0) break;
 
-            // 2. Crear InstanciaFruta en runtime (NO es GetComponent, es ScriptableObject)
+            
+            int indicePunto = Random.Range(0, puntosDisponibles.Count);
+            Transform puntoSeleccionado = puntosDisponibles[indicePunto];
+
+            
+            int indiceFruta = Random.Range(0, LeerJS.listaColeccionables.Count);
+            coleccionable datos = LeerJS.listaColeccionables[indiceFruta];
+
+            
             InstanciaFruta instancia = ScriptableObject.CreateInstance<InstanciaFruta>();
             instancia.Setup(datos);
 
-            // 3. Spawn en punto aleatorio
-            Transform punto = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            GameObject nuevo = Instantiate(FrutaPrefab, punto.position, Quaternion.identity);
+            
+            GameObject nuevo = Instantiate(FrutaPrefab, puntoSeleccionado.position, Quaternion.identity);
 
-            // 4. Pasar datos al componente del prefab genérico
             ItemRecolectable item = nuevo.GetComponent<ItemRecolectable>();
             if (item != null)
                 item.Inicio(instancia);
+
+            
+            puntosDisponibles.RemoveAt(indicePunto);
         }
     }
 }
