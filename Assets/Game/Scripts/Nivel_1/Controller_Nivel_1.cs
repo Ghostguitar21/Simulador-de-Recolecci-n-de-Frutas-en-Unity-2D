@@ -14,6 +14,6 @@ public class Controller_Nivel_1 : MonoBehaviour
     {
         
     }
-
-  
+   
 }
+  

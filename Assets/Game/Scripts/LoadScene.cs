@@ -6,10 +6,10 @@ public class LoadScene : MonoBehaviour
 
     void Start()
     {
-       
+
     }
 
-    
+
     void Update()
     {
 
@@ -17,8 +17,27 @@ public class LoadScene : MonoBehaviour
 
     public void CargarNivel(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
-    }
+        
+        string escenaActual = SceneManager.GetActiveScene().name;
 
-    
+        
+        if (escenaActual == "Menu" || sceneName == "Menu")
+        {
+           
+
+            SceneManager.LoadScene(sceneName);
+            return;
+        }
+
+        
+        if (GameManager.Instance.SeCompletaronLasFrutas())
+        {
+
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            Debug.Log("Faltan frutas por recojer");
+        }
+    }
 }

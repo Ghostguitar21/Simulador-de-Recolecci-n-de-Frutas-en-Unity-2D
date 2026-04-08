@@ -64,9 +64,22 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Recogiste: {frutaRecogida.nombreF}. Puntos: {frutaRecogida.valorF}");
         frutasRecojidas++;
 
-        Debug.Log($"Recogidas: {frutasRecojidas} / {frutasCreadas}");
+        Debug.Log($"Recogidas: {frutasRecojidas}");
 
     }
-   
-    
+
+    public void RegistrarFrutaGenerada()
+    {
+        frutasCreadas++;
+    }
+
+    public void RegistrarFrutaRecogida()
+    {
+        frutasRecojidas++;
+    }
+
+    public bool SeCompletaronLasFrutas()
+    {
+        return frutasRecojidas == 4;
+    }
 }
