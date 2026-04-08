@@ -4,11 +4,13 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static LeerJS;
 public class GameManager : MonoBehaviour
 {
 
     public GameObject Tutorial;
+    public Button Salir;
     public static GameManager Instance;
     public LeerJS leerJS;
     [SerializeField] private int frutasCreadas = 0;
@@ -44,6 +46,16 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SalirDelJuego()
+    {
+        Application.Quit();
+
+        // Esto es solo para que funcione dentro del editor de Unity
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #endif
     }
 
     public void LoadTutorial()

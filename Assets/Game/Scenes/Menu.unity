@@ -286,8 +286,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -5.5573, y: 0}
+  m_SizeDelta: {x: -11.1148, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &261572511
 MonoBehaviour:
@@ -336,10 +336,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 51.7
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -528,8 +528,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 470, y: 236}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0.000024676, y: -234.554}
+  m_SizeDelta: {x: 211.7937, y: 57.7803}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &411096880
 MonoBehaviour:
@@ -1053,7 +1053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &618534035
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1072,8 +1072,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
-  m_SizeDelta: {x: -975.1024, y: -453.1989}
+  m_AnchoredPosition: {x: 0.7263794, y: -6.5391235}
+  m_SizeDelta: {x: -973.6495, y: -440.1208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &618534036
 MonoBehaviour:
@@ -1443,7 +1443,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   Tutorial: {fileID: 618534034}
+  Salir: {fileID: 1137032309}
   leerJS: {fileID: 1804484780}
+  frutasCreadas: 0
+  frutasRecojidas: 0
+  totalScore: 0
 --- !u!4 &757823737
 Transform:
   m_ObjectHideFlags: 0
@@ -1493,8 +1497,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000023842, y: 0}
-  m_SizeDelta: {x: 491.4788, y: 122.8697}
+  m_AnchoredPosition: {x: -6.0513, y: 33.1568}
+  m_SizeDelta: {x: 960.8411, y: 422.5133}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &848396981
 MonoBehaviour:
@@ -1516,7 +1520,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "Eres un soldado militar en una misi\xF3n especial.\nSalta y corre por
+    la jngla mientras recolectas frutas.\n\nUsa las flechas (<--  -->) para moverte\nPresiona
+    Espacio para saltar\n\nRecolecta todas las frutas que puedas y llega hasta el
+    final.\n\xA1Buena suerte, soldado!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1543,15 +1550,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 40.95
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -1815,7 +1822,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1137032310}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 757823736}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SalirDelJuego
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1137032310
 MonoBehaviour:
   m_ObjectHideFlags: 0
