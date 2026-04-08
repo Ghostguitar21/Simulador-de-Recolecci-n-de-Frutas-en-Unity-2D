@@ -21,7 +21,7 @@ public class LoadScene : MonoBehaviour
         string escenaActual = SceneManager.GetActiveScene().name;
 
         
-        if (escenaActual == "Menu" || sceneName == "Menu")
+        if (escenaActual == "Menu" || sceneName == "Menu" || escenaActual == "Nivel_2" || sceneName == "Nivel_2")
         {
            
 

@@ -15,8 +15,9 @@ public class GameManager : MonoBehaviour
     public LeerJS leerJS;
     [SerializeField] private int frutasCreadas = 0;
     [SerializeField] private int frutasRecojidas = 0;
-    [SerializeField]private int totalScore = 0;
-    
+    [SerializeField] private int totalScore = 0;
+    public Dictionary<string, int> itemsRecogidos = new Dictionary<string, int>();
+
 
     void Awake()
     {
@@ -30,8 +31,8 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        
-     
+
+
     }
 
 
@@ -39,13 +40,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Tutorial.SetActive(false);
-        
+
         Debug.Log(listaColeccionables.Count);
     }
 
     void Update()
     {
-        
+
     }
 
     public void SalirDelJuego()
@@ -53,9 +54,9 @@ public class GameManager : MonoBehaviour
         Application.Quit();
 
         // Esto es solo para que funcione dentro del editor de Unity
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-    #endif
+#endif
     }
 
     public void LoadTutorial()
@@ -69,12 +70,17 @@ public class GameManager : MonoBehaviour
     }
     public void TotalItem(InstanciaFruta frutaRecogida)
     {
-        
-     if (frutaRecogida == null) return;
+
+        if (frutaRecogida == null) return;
 
         totalScore += frutaRecogida.valorF;
         Debug.Log($"Recogiste: {frutaRecogida.nombreF}. Puntos: {frutaRecogida.valorF}");
         frutasRecojidas++;
+
+        if (itemsRecogidos.ContainsKey(frutaRecogida.nombreF))
+            itemsRecogidos[frutaRecogida.nombreF]++;
+        else
+            itemsRecogidos[frutaRecogida.nombreF] = 1;
 
         Debug.Log($"Recogidas: {frutasRecojidas}");
 
@@ -94,4 +100,5 @@ public class GameManager : MonoBehaviour
     {
         return frutasRecojidas == 4;
     }
+
 }

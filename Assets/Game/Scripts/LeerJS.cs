@@ -21,7 +21,7 @@ public class LeerJS : MonoBehaviour
     {
         public int id;
         public string titulo;
-        public List<ObjetivoMision> objetivos;
+        public List<ObjetivoMision> objetivos = new List<ObjetivoMision>();
 
     }
     [System.Serializable]
@@ -46,8 +46,9 @@ public class LeerJS : MonoBehaviour
     public List<mision> listaMisiones = new List<mision>();
 
 
-    private void Awake()
+    public void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         string path = System.IO.Path.Combine(Application.streamingAssetsPath, "Info.json");
         string json = System.IO.File.ReadAllText(path);
         DatosCargados = JsonUtility.FromJson<DataMaestra>(json);
