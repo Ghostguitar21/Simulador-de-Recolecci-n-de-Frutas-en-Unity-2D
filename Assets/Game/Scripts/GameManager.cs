@@ -51,13 +51,17 @@ public class GameManager : MonoBehaviour
 
     public void SalirDelJuego()
     {
-        Application.Quit();
+        Debug.Log("Saliendo del juego...");
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
 #endif
     }
 
-    public void LoadTutorial()
+
+public void LoadTutorial()
     {
         Tutorial.SetActive(true);
     }
