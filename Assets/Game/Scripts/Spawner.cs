@@ -14,39 +14,55 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        Crear(4);
+        Crear();
     }
 
-    public void Crear(int cantidad = 4)
+    public void Crear(int cantidad = 4, List<ObjetivoMision> objetivos = null)
     {
         
         puntosDisponibles = new List<Transform>(spawnPoints);
 
-        for (int i = 0; i < cantidad; i++)
+        if (objetivos != null)
+        {
+            foreach (var objetivo in objetivos)
+            {
+                for (int i = 0; i < objetivo.cantidad; i++)
+                {
+                    if (puntosDisponibles.Count == 0) break;
+
+                    coleccionable datos = listaColeccionables
+                        .Find(c => c.nombre == objetivo.itemName);
+
+                    if (datos != null)
+                        SpawnFruta(datos);
+                }
+            }
+        }
+
+        
+        int restantes = cantidad - (spawnPoints.Length - puntosDisponibles.Count);
+        for (int i = 0; i < restantes; i++)
         {
             if (puntosDisponibles.Count == 0) break;
 
-            
-            int indicePunto = Random.Range(0, puntosDisponibles.Count);
-            Transform puntoSeleccionado = puntosDisponibles[indicePunto];
-
-            
-            int indiceFruta = Random.Range(0, LeerJS.listaColeccionables.Count);
-            coleccionable datos = LeerJS.listaColeccionables[indiceFruta];
-
-            
-            InstanciaFruta instancia = ScriptableObject.CreateInstance<InstanciaFruta>();
-            instancia.Setup(datos);
-
-            
-            GameObject nuevo = Instantiate(FrutaPrefab, puntoSeleccionado.position, Quaternion.identity);
-
-            ItemRecolectable item = nuevo.GetComponent<ItemRecolectable>();
-            if (item != null)
-                item.Inicio(instancia);
-
-            
-            puntosDisponibles.RemoveAt(indicePunto);
+            int indiceFruta = Random.Range(0, listaColeccionables.Count);
+            SpawnFruta(listaColeccionables[indiceFruta]);
         }
     }
+    void SpawnFruta(coleccionable datos)
+    {
+        int indicePunto = Random.Range(0, puntosDisponibles.Count);
+        Transform puntoSeleccionado = puntosDisponibles[indicePunto];
+
+        InstanciaFruta instancia = ScriptableObject.CreateInstance<InstanciaFruta>();
+        instancia.Setup(datos);
+
+        GameObject nuevo = Instantiate(FrutaPrefab, puntoSeleccionado.position, Quaternion.identity);
+        ItemRecolectable item = nuevo.GetComponent<ItemRecolectable>();
+        if (item != null)
+            item.Inicio(instancia);
+
+        puntosDisponibles.RemoveAt(indicePunto);
+    }
 }
+

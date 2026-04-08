@@ -11,31 +11,37 @@ public class Controller_Nivel_2 : MonoBehaviour
 
     public TextMeshProUGUI Mision;
     private LeerJS.mision misionActual;
+    public GameObject fin;
+    private bool misionCompletada = false;
 
     void Start()
     {
-
         LeerJS lector = GameManager.Instance?.leerJS;
-
 
         if (lector != null && lector.listaMisiones.Count > 0)
         {
-            int indiceAleatorio = Random.Range(0, lector.listaMisiones.Count);
-            LoadMission(lector.listaMisiones[indiceAleatorio]);
+            
+            int indice = Random.Range(0, lector.listaMisiones.Count);
+            misionActual = lector.listaMisiones[indice];
+
+            
+            Spawner spawner = FindFirstObjectByType<Spawner>();
+            if (spawner != null)
+                spawner.Crear(4, misionActual.objetivos);
+
             LoadMission(misionActual);
+
+            
         }
-        else
-        {
-            Debug.LogWarning("No se encontró LeerJS o la lista de misiones está vacía.");
-        }
-       
+        fin.SetActive(false);
     }
 
 
     void Update()
     {
-        if (misionActual != null && ValidarMision())
+        if (!misionCompletada && misionActual != null && ValidarMision())
         {
+            misionCompletada = true;
             MostrarVictoria();
         }
     }
@@ -59,8 +65,11 @@ public class Controller_Nivel_2 : MonoBehaviour
     {
         Mision.text = "¡Misión completada!";
         Debug.Log("¡Victoria!");
+        fin.SetActive(true);
+
     }
 
+    
 
     public void LoadMission(mision data)
     {

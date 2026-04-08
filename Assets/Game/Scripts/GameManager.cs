@@ -52,8 +52,6 @@ public class GameManager : MonoBehaviour
     public void SalirDelJuego()
     {
         Application.Quit();
-
-        // Esto es solo para que funcione dentro del editor de Unity
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
@@ -100,5 +98,22 @@ public class GameManager : MonoBehaviour
     {
         return frutasRecojidas == 4;
     }
+    void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
+    void OnDisable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+      
+        itemsRecogidos.Clear();
+        frutasCreadas = 0;
+        frutasRecojidas = 0;
+        totalScore = 0;
+    }
 }
